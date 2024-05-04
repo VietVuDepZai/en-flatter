@@ -23,5 +23,8 @@
         "src": "/(.*)",
         "dest": "depression_Helper/wsgi.py"
       }
-    ]
+    ],
+
+    "outputDirectory": "staticfiles_build"
+
   }
