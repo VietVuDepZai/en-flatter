@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-v+-!h3*lw!g70*#syyt*0e632r*f2q0-&r-2$y#9_1!73+0muf
 DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+WSGI_APPLICATION = 'api.wsgi.app'
 
 PAML_API_KEY = "AIzaSyDF28uVlivFM3bh10pnqNRsxU_jixJd-eI"
 # Application definition
