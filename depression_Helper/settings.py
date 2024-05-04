@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v+-!h3*lw!g70*#syyt*0e632r*f2q0-&r-2$y#9_1!73+0muf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.10','127.0.0.1','flatter.onrender.com']
+ALLOWED_HOSTS = ['192.168.1.10','127.0.0.1','en-flatter.onrender.com']
 
 PAML_API_KEY = "AIzaSyDF28uVlivFM3bh10pnqNRsxU_jixJd-eI"
 # Application definition
