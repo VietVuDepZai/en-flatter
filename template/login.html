@@ -319,7 +319,37 @@ input[type="checkbox"]:checked::before {
     margin-block: 0.6rem;
   }
 }
+/* Add this CSS to your existing styles */
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    z-index: 9999;
+    animation: slideIn 1.5s ease forwards, fadeOut 6.2s ease forwards;
+    opacity: 0;
+}
 
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 @media screen and (max-width: 36.25rem) {
   .container {
     max-width: 100%;
@@ -344,8 +374,8 @@ input[type="checkbox"]:checked::before {
         </div>
 
         <div class="content-container">
-  <h1 class="section-heading">Đồng hành cùng người trầm cảm -  <span>Flatter</span></h1>
-          <p class="section-paragraph">Flatter là một nền tảng tư vấn tâm lý giúp kết nối bác sĩ và bệnh nhân.</p>
+  <h1 class="section-heading">Companion for the depressed -  <span>Flatter</span></h1>
+          <p class="section-paragraph">Flatter is a tool that helps connects qualified doctors with patients who struggle with depression</p>
         </div>
       </div>
 
@@ -353,37 +383,54 @@ input[type="checkbox"]:checked::before {
         <div class="form-wrapper">
         
 
-          <h2>Chào mừng bạn! 👋🏻</h2>
-          <p>Điền thông tin đăng nhập dưới đây để truy cập vào tài khoản.</p>
-
+          <h2>Hello! 👋🏻</h2>
+          <p>Sign up or login to have access to our tools today!</p>
+ <!-- Displaying messages -->
+ {% if messages %}
+    <div id="toast-container"></div> <!-- Container for toast messages -->
+    {% for message in messages %}
+    <script>
+        // JavaScript to create and display toast messages
+        document.addEventListener('DOMContentLoaded', function() {
+            var toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = '{{ message }}';
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(function() {
+                toast.remove();
+            }, 7000); // Remove the toast after 3 seconds
+        });
+    </script>
+    {% endfor %}
+    {% endif %}
     <form method="POST" autocomplete="off" enctype="multipart/form-data" class="form" id="form-1">
                   {% csrf_token %}
 
 <p>
-    <label for="id_username">Tên người dùng:</label>
+    <label for="id_username">Username:</label>
     <input type="text" name="username" maxlength="150" required="" id="id_username">
     
     
     
   </p>
   <p>
-    <label for="id_username">Mật khẩu:</label>
+    <label for="id_username">Password:</label>
     <input type="password" name="password" maxlength="150" required="" id="id_password">
     
     
     
   </p>                   <div class="remember-forgot">
               
-            <a href="/signup">Chưa có tài khoản, Đăng ký?</a>
+            <a href="/signup">No account yet? Sign up</a>
 
-            <a href="#">Quên mặt khẩu?</a>
+            <a href="#">Forgot password?</a>
           </div>
-                      <button type="submit"class="login-btn">Đăng nhập</button>
-          <div class="or-divider">hoặc</div>
+                      <button type="submit"class="login-btn">Sign in</button>
+          <div class="or-divider">Or</div>
 
           <a href="/accounts/google/login/?next=/" class="google-signin" style="display:flex">
             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="96px" height="96px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-            <span> Đăng nhập với Google</span>
+            <span> Login with Google</span>
           </a>
           </form>
           <br>

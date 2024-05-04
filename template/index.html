@@ -4,7 +4,7 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         *,
         html {
@@ -220,7 +220,7 @@
             padding: 25px;
             width: 230px;
             position: absolute;
-            left: -28px;
+            left: -30px;
             top: 30px;
             z-index: 1;
             border-radius: 5px;
@@ -1357,13 +1357,13 @@ height: 144px;overflow: hidden;
     <header>
         <div class="banner">
             <span class="section-left">
-                <a href="emailto:vuviet.thd@gmail.com">vuviet.thd@gmail.com</a>
-                <a href="tel:84908475786">+84908475786</a>
+                <a style="color:white !important">vuviet.thd@gmail.com</a>
+                <a style="color:white !important">+84908475786</a>
             </span>
-            <span class="section-right">
-                <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
-                <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <span class="section-right" style="color:white !important">
+                <a title="Facebook" style="color:white !important"><i class="fa fa-facebook"></i></a>
+                <a title="Instagram" style="color:white !important"><i class="fa fa-instagram"></i></a>
+                <a title="Twitter" style="color:white !important"><i class="fa fa-twitter"></i></a>
             </span>
         </div>
 
@@ -1379,10 +1379,10 @@ height: 144px;overflow: hidden;
         </div>
 
         <div class="topnav" id="myTopnav">
-            <a href="#" class="active">TRANG CHỦ</a>
-            <a href="#about">GIỚI THIỆU</a>
+            <a href="#" class="active">Home</a>
+            <a href="#about">Introduction</a>
 
-            <a href="#contact">LIÊN HỆ</a>
+            <a href="#contact">Contact us</a>
 
 {% if request.user|has_group:"DOCTOR" %}
             <a id="choice"href="/doctormain" title="SignIn" style="float:right;">
@@ -1405,7 +1405,7 @@ height: 144px;overflow: hidden;
             </a>
 {% else  %}
             <a href="/login" title="SignIn" style="float:right;">
-                <i class="fa fa-user"></i>
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </a>
 {% endif %}
 
@@ -1425,44 +1425,27 @@ height: 144px;overflow: hidden;
             <td style=" padding-left: 28px;   margin-top: 11vw;
     display: block;">
 
-            <h1 style="font-size:40px;">Trầm cảm là gì?</h1>
+            <h1 style="font-size:40px;">What is depression?</h1>
 
             <ul class="tabs group">
-                <li><a class="active" href="#/one">Khái niệm</a></li>
-                <li><a href="#/two">Nguyên nhân</a></li>
-                <li><a href="#/three">Dấu hiệu</a></li>
+                <li><a class="active" href="#/one">Definition</a></li>
+                <li><a href="#/two">Causes</a></li>
+                <li><a href="#/three">Symptoms</a></li>
 <!--                 <li><a href="#/for">Phần 4</a></li>
                 <li><a href="#/five">Phần 5</a></li>
                 <li><a href="#/six">Phần 6</a></li> -->
             </ul>
             <div id="panels" style="overflow:hidden">
-                <p id="one">Trầm cảm là một trong những loại tình trạng sức khỏe tâm thần phổ biến nhất và thường phát
-                    triển cùng với sự lo lắng. Trầm cảm có thể nhẹ và diễn ra trong thời gian ngắn hoặc trầm trọng và
-                    kéo dài. Một số người chỉ bị ảnh hưởng bởi trầm cảm một lần, trong khi những người khác có thể bị
-                    trầm cảm nhiều lần. Trầm cảm có thể dẫn đến tự tử, nhưng điều này có thể phòng ngừa được khi được hỗ
-                    trợ thích hợp. Điều quan trọng cần biết là có thể làm được nhiều điều để giúp đỡ những người trẻ
-                    đang có ý định tự tử.</p>
-                <p id="two">Điều gì gây ra trầm cảm? <br>
-                    Trầm cảm có thể xảy ra như một phản ứng đối với điều gì đó như lạm dụng, bạo lực ở trường học, cái
-                    chết của
-                    người thân hoặc gia đình
-                    các vấn đề như bạo lực gia đình hoặc tan vỡ gia đình. Ai đó có thể bị trầm cảm sau khi
-                    căng thẳng trong thời gian dài.
-                    Nó cũng có thể chạy trong gia đình. Đôi khi chúng ta có thể không biết tại sao nó lại xảy ra.</p>
+                <p id="one">Depression is one of the most common types of mental illnesses and often develops alongside anxiety. Depression can be mild and short lived or become severe and long lasting. Some people are only affected by depression once, while others can experience depression multiple times. Depression often leads to suicide, but this can be prevented with the right support. It is important to know that we can do many things to help young people who have suicidal thoughts.</p>
+                <p id="two">What causes depression? <br>
+                    Depression can happen like a response to something usually traumatizing that happened. For example abuse, violence in school, passing of loved one  or family violence. Anyone can be depressed after experiencing stress for long periods of time. Depression can also run in the family. Sometimes we don’t know clearly why depression happens.</p>
 
-                <p id="three"> Dấu hiệu và triệu chứng trầm cảm ở trẻ em:
-Trầm cảm có thể mang lại cảm giác khác nhau ở mỗi đứa trẻ. Dưới đây là một số dấu hiệu và triệu chứng thường thấy của trầm cảm:
-<br>
-1. Bản thân cảm thấy mệt mỏi trong người hoặc trong tình trạng thiếu năng lượng ngay cả khi đã nghỉ ngơi
-<br>
-2. Luôn bồn chồn hoặc khó tập trung vào một việc
-<br>
-3. Cảm thấy khó khăn trong việc thực hiện các hoạt động thường ngày
-<br>
-4. Cảm thấy buồn bã, lo lắng hoặc nóng giận trong thời gian dài
-<br>
-5. Cố gắng tách biệt khỏi người khác và luôn cô đơn
-<br>
+                <p id="three"> Depression can bring different emotions to children. Here are some common signs and symptoms of depression:
+                  <br>  Always feeling tired inside or always being in a state of tiredness, not having energy even after relaxing.
+                  <br>      Always anxious or can’t focus on doing work.
+                  <br>     Struggle to perform daily activities.
+                  <br>    Feeling sad, worried or angry in a long period of time.
+                  <br>    Always trying to be alone
                 </p>
           
                                 <!-- 
@@ -1506,7 +1489,7 @@ display:flex;flex-wrap: wrap;    justify-content: space-evenly;
     border-radius: 5px;
     letter-spacing: 0.09em;
     margin-bottom: 10px;
-    ">Trải nghiệm Flatter Bot <i class="fa fa-arrow-right"></i></a>
+    ">Try out Flatter Bot <i class="fa fa-arrow-right"></i></a>
    <a class="contact-btn" href="https://forms.gle/aPhh7PAcGNPG1J86A" style="
     float: right;
     padding: 15px;
@@ -1525,7 +1508,7 @@ display:flex;flex-wrap: wrap;    justify-content: space-evenly;
     letter-spacing: 0.09em;
         margin-bottom: 10px;
 
-    ">Tham gia khảo sát <i class="fa fa-arrow-right"></i></a>
+    ">Participate in survey <i class="fa fa-arrow-right"></i></a>
      <a class="contact-btn" href="/start-exam" style="
     float: right;
     padding: 15px;
@@ -1544,7 +1527,7 @@ display:flex;flex-wrap: wrap;    justify-content: space-evenly;
 
     border-radius: 5px;
     letter-spacing: 0.09em;
-    ">Kiểm tra trực tiếp <i class="fa fa-arrow-right"></i></a>
+    ">Check on mental health <i class="fa fa-arrow-right"></i></a>
     </div>
 
     </td>
@@ -1570,7 +1553,7 @@ display:flex;flex-wrap: wrap;    justify-content: space-evenly;
                 </td>
                 <td>
                     <em style="font-size:30px;
-">FLATTER - đồng hành cùng người trầm cảm</em>
+">FLATTER - Companion for the depressed</em>
                     <!-- <h1>FLATTER - đồng hành cùng người trầm cảm</h1>
                     <p style="color:black">
                         Tổ chức Y tế Thế giới WHO ghi nhận Trầm cảm là căn bệnh phổ biến và là gánh nặng bệnh lý đứng thứ 2 của toàn thế giới:
@@ -1591,9 +1574,10 @@ Hãy tham gia cùng Flatter trong cuộc chiến vì sức khỏe tâm thần. F
 <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
 padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
 border-radius: 8px; will-change: transform;">
- <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-   src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAF5cha3xYE&#x2F;watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
- </iframe> </td>
+ <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
+ src="https://www.canva.com/design/DAF5cha3xYE/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen" autoplay>
+</iframe>
+</td>
             </tr>
         </table>
 
@@ -1609,7 +1593,7 @@ border-radius: 8px; will-change: transform;">
     <!--SECTION2-->
     <section id="ourgoal" class="section2">
             <div class="title_header">
-            <h1>Dữ liệu khảo sát</h1>
+            <h1>Surveys</h1>
         </div>
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -1665,7 +1649,7 @@ function myItems(jsonString){
     <!--SECTION4-->
     <section id="gallery" class="section4">
         <div class="title_header">
-            <h1>Hình ảnh khảo sát</h1>
+            <h1>A LOOK INTO OUR SURVEY</h1>
         </div>
         <div class="row">
             <div class="column hover-shadow cursor">
@@ -1762,19 +1746,19 @@ function myItems(jsonString){
                 <td>
                     <form method="POST" class="form">
                         {% csrf_token %}
-                        <h4>Liên hệ sự giúp đỡ</h4>
-                        <h1>Đến từ Flatter </h1>
-                        <input type="text" name="username" id="username" placeholder="Họ Tên" maxlength="60" required />
+                        <h4>Contact us for support</h4>
+                        <h1>From Flatter </h1>
+                        <input type="text" name="username" id="username" placeholder="Name" maxlength="60" required />
                         <input type="email" name="email" id="email" placeholder="Email" maxlength="100" required />
                         <input type="date" name="date" id="date" placeholder="" required />
-                        <textarea name="message" style="
-    min-width: 288px;
-    max-width: 288px;
+                        <textarea name="message" placeholder="Write about what you feel..." style="
+    min-width:100%;
+    max-width: 100%;
 " name="" id="" cols="30" rows="10"></textarea>
-                        <button type="submit" class="btn2">LIÊN HỆ</button>
+                        <button type="submit" class="btn2">SUBMIT</button>
                     </form>
                 </td>
-                <td>
+                <!-- <td>
                     <em style="font-size:40px;
 ">LIÊN HỆ</em>
                     <h1>NHỮNG CÁCH ĐIỀU TRỊ LÀNH MẠNH</h1>
@@ -1788,7 +1772,7 @@ function myItems(jsonString){
                         hiệu quả. Việc giao tiếp tốt giữa bệnh nhân và bác sĩ là rất quan trọng. Những người lớn tuổi
                         hơn nên cần đặc biệt cẩn thận coi chừng tác dụng phụ của thuốc gây ra do liều quá cao hoặc tương
                         tác với các thuốc khác.</p>
-                </td>
+                </td> -->
             </tr>
         </table>
     </section>
@@ -1799,7 +1783,7 @@ function myItems(jsonString){
         <div style="width:60%;
 margin:auto;">
             <div class="column">
-                <a class="footer_title"><i class="fa fa-map-marker"></i> Địa chỉ</a>
+                <a class="footer_title"><i class="fa fa-map-marker"></i> Location</a>
                 <a></a>
                 <a style="display:none"href=""></a>
                                 <a style="display:none"href=""></a>
@@ -1810,7 +1794,7 @@ margin:auto;">
             </div>
 
    <div class="column">
-                <a class="footer_title"><i class="fa fa-share-square-o"></i> Website dựa theo các nguồn tham khảo:</a>
+                <a class="footer_title"><i class="fa fa-share-square-o"></i> Sources:</a>
                 <a style="    flex-wrap: nowrap;
     display: flex;
     align-items: center;" href="https://bookingcare.vn/"><img style="    width: 24px;" src="https://bookingcare.vn/bookingcare.png" alt=""> Booking Care</a>
@@ -1866,16 +1850,16 @@ margin:auto;">
 
             // Set Data
                 const data = google.visualization.arrayToDataTable([
-                  ['Contry', 'Số người'],
+                  ['Contry', 'People'],
                   ['12 - 18',kid],
                   ['25 - 60',adult],
-                  ['Nam',manCount],
-                  ['Nữ',womanCount]
+                  ['Male',manCount],
+                  ['Female',womanCount]
                 ]);
 
                 // Set Options
                 const options = {
-                  title:'Độ tuổi/Giới tính tham gia khảo sát'
+                  title:'NUMBER OF PEOPLE AND THEIR AGE GROUP WHO PARTICIPATED IN THE SURVEY'
                 };
 
                 // Draw
@@ -1890,15 +1874,15 @@ margin:auto;">
                 var noway = no - 442
             // Set Data
                 const data = google.visualization.arrayToDataTable([
-                  ['Câu trả lời','Có/Không'],
-                  ['Có',yes],
-                  ['Không',noway],
-                  ['Không rõ',noneanswer]
+                  ['Answer','Yes/No'],
+                  ['Yes',yes],
+                  ['No',noway],
+                  ["Don't know",noneanswer]
                 ]);
 
                 // Set Options
                 const options = {
-                  title:'Số người trả lời Có/Không khi gặp các triệu chứng overthinking, trầm cảm nhẹ qua tình huống: mâu thuẫn gia đình, dễ cáu gắt, gặp các cơn đau đầu, áp lực cuộc sống,...',
+                  title:'PERCENTAGE OF PEOPLE WHO SUFER FROM OVERTHINKING AND MILD DEPRESSION',
                     is3D: true
 
                 };

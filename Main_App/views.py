@@ -26,6 +26,7 @@ from django.utils.safestring import mark_safe
 import calendar
 # import google.generativeai as palm
 from django.conf import settings
+from django.contrib import messages
 
 import google.generativeai as genai
 import re
@@ -250,8 +251,9 @@ def login(request):
                     return redirect("/patientmain")
                 else:
                     return redirect("/choosing")
-            
-
+            else:
+                messages.error(request, 'Invalid username or password.')  # Adding error message
+                return redirect("/login")  # Redirecting back to login page                    
     context = {}
     return render(request, 'login.html', context)
 
