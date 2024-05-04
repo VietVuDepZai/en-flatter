@@ -847,34 +847,22 @@ message-area
                                                         </div>
                                                     </a>
                                                     
-                                                    <a href="#" class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <img style="background: #fafafa;
-                                box-shadow: 4px 6px 36px -6px rgba(1, 1, 1, 0.5);
-                                margin: auto;
-                                border-radius: 50%;
-                                margin: auto;" width="50" height="50" src="images/profile_pic/nobita.png" alt="LEVIOOSA">
-                                                        </div>
-                                                        <div style="margin-left:  0.5em" class="flex-grow-1 ">
-                                                            <h3>vudangkhoa</h3>
-                                                            <p>Bác sĩ, chuyên viên tư vấn</p>
-                                                        </div>
-                                                    </a>
-                                                    
-                                                    <a href="#" class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <img style="background: #fafafa;
-                                box-shadow: 4px 6px 36px -6px rgba(1, 1, 1, 0.5);
-                                margin: auto;
-                                border-radius: 50%;
-                                margin: auto;" width="50" height="50" src="images/profile_pic/doctor_aWHZql2.png" alt="LEVIOOSA">
-                                                        </div>
-                                                        <div style="margin-left:  0.5em" class="flex-grow-1 ">
-                                                            <h3>demoBS</h3>
-                                                            <p>Bác sĩ, chuyên viên tư vấn</p>
-                                                        </div>
-                                                    </a>
-                                                    
+                                                {% for t in doctor %}
+                                                <a href="tel:{{t.mobile}}"
+                                                   class="d-flex align-items-center">
+                                                   <div class="flex-shrink-0">
+                                                       <img style="background: #fafafa;
+                               box-shadow: 4px 6px 36px -6px rgba(1, 1, 1, 0.5);
+                               margin: auto;
+                               border-radius: 50%;
+                               margin: auto;" width="50" height="50" src="/static/images/{{ t.profile_pic }}" alt="LEVIOOSA">
+                                                   </div>
+                                                   <div style="margin-left:  0.5em" class="flex-grow-1 ">
+                                                       <h3>{{t.user}}</h3>
+                                                       <p>Bác sĩ, chuyên viên tư vấn</p>
+                                                   </div>
+                                               </a>
+                                               {% endfor %}
 
                                                 </div>
                                                 <!-- chat-list -->
