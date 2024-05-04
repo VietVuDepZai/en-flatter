@@ -1,9 +1,6 @@
 from django.db import models
-from froala_editor.fields import FroalaField
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 from django.urls import reverse
-from ckeditor.fields import RichTextField
 from datetime import datetime, timedelta, date
 # Create your models here.
 

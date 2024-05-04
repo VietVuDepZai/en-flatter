@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
         'widget_tweaks',
-        'ckeditor',
 
 
 
@@ -161,15 +160,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles_build'
 LOGOUT_REDIRECT_URL = '/login'
 
 LOGIN_REDIRECT_URL = "/choosing"
-CKEDITOR_UPLOAD_PATH = 'uploads/'
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-    },
-}
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dyiesiahu',
     'API_KEY': '193699843749843',
