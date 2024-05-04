@@ -1,0 +1,2366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="utf-8">
+    <title>Depression Helper</title>
+    <link rel="icon" href="{% static 'images/ilikeit.png' %}">
+    <link href="{% static 'css/camera.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+
+    <!-- <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet"> -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<style>
+    .jumbotron {
+        margin-bottom: 0px;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .column {
+        width: 100%;
+        padding: 0 1em 1em 1em;
+        text-align: center;
+        /* min-height: 220px; */
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        padding: 2em 1.5em;
+        background: linear-gradient(#ffffff 50%, #2c7bfe 50%);
+        background-size: 100% 200%;
+        background-position: 0 2.5%;
+        border-radius: 5px;
+        box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        transition: 0.15s;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f194c;
+        margin: 1em 0;
+        display: block;
+        margin-top: 2em;
+    }
+
+
+    .icon-wrapper {
+        position: relative;
+        margin: 20px auto;
+        font-size: 30px;
+        color: #ffffff;
+        display: grid;
+        place-items: center;
+        transition: 0.5s;
+    }
+
+    .card:hover {
+        background-position: 0 100%;
+    }
+
+    .card:hover h3 {
+
+        display: none
+    }
+
+    .card:hover img {
+        display: none
+    }
+
+    .card:hover .card-detail {
+        display: block;
+        color: white
+    }
+
+    @media screen and (min-width: 768px) {
+        section {
+            padding: 0 2em;
+        }
+
+        .column {
+            flex: 0 50%;
+            max-width: 50%;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        section {
+            padding: 1em 3em;
+        }
+
+        .column {
+            flex: 0 0 33.33%;
+            max-width: 33.33%;
+        }
+    }
+
+    .card-detail {
+        display: none;
+        width: 100%;
+    }
+
+    body {
+        margin: 0;
+        font-family: verdana;
+    }
+
+    /*======================
+GLOVAL CSS IS HERE !
+========================
+*/
+    .w-50 {
+        width: 50%;
+        float: left;
+    }
+
+    /*
+========================
+GLOVAL CSS IS END !
+========================
+*/
+
+    /*
+=================================
+main-contend-section start !
+=================================
+*/
+    .main-contend-section {
+        background-color: #f0f2f5;
+        padding: 15px 0 10px 0;
+    }
+
+    .main-container {
+        overflow: hidden;
+        width: 90%;
+        margin: auto;
+    }
+
+    .main-contend-section .logo img {
+        width: 300px;
+        margin-top: 46px;
+        margin-left: 22px;
+    }
+
+    .main-contend-section .fb-tag-line h3 {
+        color: #1c1e21;
+        font-size: 25.1px;
+        font-weight: normal;
+        margin: 0;
+        margin-left: 50px;
+        margin-top: -10px;
+    }
+
+    .main-contend-section .form-section {
+        width: 382px;
+        background-color: #ffffff;
+        padding: 16px 16px 0;
+        border-radius: 8px;
+        box-sizing: border-box;
+        margin-left: 90px;
+        margin-top: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-contend-section .form-section input[type="text"] {
+        padding: 15px 0 17px 16px;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #dddfe2;
+        margin-bottom: 12px;
+        font-family: arial;
+    }
+
+    .main-contend-section .form-section input[type="password"] {
+        padding: 15px 0 17px 16px;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #dddfe2;
+        margin-bottom: 12px;
+        font-family: arial;
+    }
+
+    ::placeholder {
+        color: #1d2129;
+    }
+
+    .countdown-container {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        transform: translateY(-50%);
+
+    }
+
+    .clock-item .inner {
+        height: 0px;
+        padding-bottom: 100%;
+        position: relative;
+        width: 100%;
+    }
+
+    .clock-canvas {
+        background-color: rgba(255, 255, 255, .1);
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        z-index: 99;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .clock-item {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .clock-item {
+            margin: 0px 30px 30px 30px;
+        }
+    }
+
+    .text {
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: -50px;
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+        width: 100%;
+    }
+
+    .text .val {
+        font-size: 50px;
+    }
+
+    .text .type-time {
+        font-size: 20px;
+    }
+
+    ul.tabs {
+        width: 600px;
+        height: 72px;
+        margin: 0 auto;
+        list-style: none;
+        overflow: hidden;
+        padding: 0
+    }
+
+    ul.tabs li {
+        float: left;
+        width: 100px
+    }
+
+    ul.tabs li a {
+        position: relative;
+        display: block;
+        height: 27px;
+        margin-top: 40px;
+        padding: 10px 0 90px 0;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        background: #1abc9c;
+        -webkit-box-shadow: 8px 12px 25px 2px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 8px 12px 25px 2px rgba(0, 0, 0, 0.4);
+        box-shadow: 8px 12px 25px 2px rgba(0, 0, 0, 0.4);
+        border: 0 solid #000000;
+        -webkit-transition: padding 0.2s ease, margin 0.2s ease;
+        -moz-transition: padding 0.2s ease, margin 0.2s ease;
+        -o-transition: padding 0.2s ease, margin 0.2s ease;
+        -ms-transition: padding 0.2s ease, margin 0.2s ease;
+        transition: padding 0.2s ease, margin 0.2s ease
+    }
+
+    .tabs li:first-child a {
+        z-index: 3;
+        -webkit-border-top-left-radius: 8px;
+        -moz-border-radius-topleft: 8px;
+        border-top-left-radius: 8px
+    }
+
+
+    .tabs li:last-child a {
+        -webkit-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        -webkit-border-top-right-radius: 8px;
+        -moz-border-radius-topright: 8px;
+        border-top-right-radius: 8px
+    }
+
+    ul.tabs li a:hover {
+        margin: 35px 0 0 0;
+        padding: 10px 0 90px 0
+    }
+
+    ul.tabs li a.active {
+        margin: 30px 0 0 0;
+        padding: 10px 0 90px 0;
+        background: #2c3e50;
+        color: #D3FEF5;
+        /*color:#ff6831;*/
+        outline: none
+    }
+
+    .group:before,
+    .group:after {
+        content: " ";
+        display: table
+    }
+
+    .group:after {
+        clear: both
+    }
+
+    #panels {
+        width: 600px;
+        height: 300px;
+        margin: 0 auto;
+        background: #2c3e50;
+        -webkit-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
+        -webkit-border-bottom-right-radius: 8px;
+        -webkit-border-bottom-left-radius: 8px;
+        -moz-border-radius-bottomright: 8px;
+        -moz-border-radius-bottomleft: 8px;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+    #statistic {
+        margin-top: -120px
+    }
+
+    .frame {
+        position: relative;
+        top: 25%;
+        left: 35%;
+        width: 400px;
+        height: 400px;
+        border-radius: 2px;
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background: #fff;
+        color: #333;
+        font-family: "Open Sans", Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+    }
+
+    .frame-card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .frame-card-header {
+        height: 25%;
+        width: 100%;
+        background: #f1ba64;
+        color: white;
+        padding: 25px;
+        box-sizing: border-box;
+    }
+
+    .frame-card-header div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50%;
+        margin: 0px;
+    }
+
+    .frame-card-header h3 {
+        text-transform: uppercase;
+    }
+
+    .frame-card-header h5 {
+        text-transform: capitalize;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .frame-card-body .body-graph>div,
+    .frame-card-body .body-bottom {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .frame-card-body {
+        height: 75%;
+        width: 100%;
+        padding: 25px 10px;
+        box-sizing: border-box;
+    }
+
+    .frame-card-body .body-legend {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        height: 15%;
+        width: 100%;
+    }
+
+    .frame-card-body .body-legend p {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 13px;
+        text-transform: capitalize;
+    }
+
+    .frame-card-body .body-legend p:last-child {
+        margin-right: 10px;
+        margin-left: 20px;
+    }
+
+    .frame-card-body .body-legend p span {
+        width: 15px;
+        height: 3.5px;
+        background: #7ba2ff;
+        border-radius: 5px;
+    }
+
+    .frame-card-body .body-legend p:first-child span {
+        background: #fa7373;
+    }
+
+    .frame-card-body .body-graph {
+        height: 66%;
+        margin: 2% 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
+
+    .frame-card-body .body-graph>div {
+        height: calc(100% / 2);
+        border-top-color: rgba(128, 128, 128, 0.24);
+        border-top-style: dashed;
+        border-top-width: 1px;
+        border-bottom-color: rgba(128, 128, 128, 0.24);
+        border-bottom-style: dashed;
+        border-bottom-width: 1px;
+    }
+
+    .frame-card-body .body-graph>div:last-child {
+        border-top-width: 0px;
+    }
+
+    .frame-card-body .body-graph .line-1 .point {
+        width: calc(100% / 7);
+        text-align: center;
+        height: 100%;
+        position: relative;
+    }
+
+    .frame-card-body .body-graph .line-1 .point::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 7px;
+        height: 7px;
+        background: #fa7373;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .frame-card-body .body-graph .line-1 .point::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 100%;
+        background: #fa7373;
+        cursor: pointer;
+    }
+
+    .frame-card-body .body-graph .line-1 .point span {
+        background: #fa7373;
+        font-size: 10px;
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        position: absolute;
+        z-index: 0;
+        transition: display 1s linear;
+        display: none;
+    }
+
+    .frame-card-body .body-graph .line-1 .point span::before {
+        content: "";
+        position: absolute;
+        top: 82%;
+        left: 47%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 50%;
+        height: 50%;
+        z-index: -1;
+        background: #fa7373;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(1) span {
+        bottom: 2%;
+        left: 12%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(1)::before {
+        top: unset;
+        bottom: -25%;
+        left: 40%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(1)::after {
+        top: unset;
+        bottom: -75%;
+        left: 95%;
+        transform: translate(-50%, -50%) rotateZ(40deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(2) span {
+        top: -9%;
+        left: 22%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(2)::before {
+        top: 35%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(2)::after {
+        top: 44%;
+        left: 99%;
+        height: 68%;
+        transform: translate(-50%, -50%) rotateZ(108deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(3) span {
+        top: 12%;
+        left: 24%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(3)::before {
+        top: 55%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(3)::after {
+        top: 45%;
+        left: 99%;
+        height: 68%;
+        transform: translate(-50%, -50%) rotateZ(71deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(4) span {
+        top: -8%;
+        left: 23%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(4)::before {
+        top: 35%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(4)::after {
+        top: unset;
+        bottom: -75%;
+        left: 95%;
+        transform: translate(-50%, -50%) rotateZ(325deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(5) span {
+        left: 10%;
+        bottom: 0%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(5)::before {
+        top: unset;
+        bottom: -25%;
+        left: 40%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(5)::after {
+        top: unset;
+        bottom: -107%;
+        left: 105%;
+        height: 80%;
+        transform: translate(-50%, -50%) rotateZ(104deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(6) span {
+        bottom: -20%;
+        left: 42%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(6)::before {
+        top: unset;
+        bottom: -45%;
+        left: 70%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(6)::after {
+        top: unset;
+        bottom: -98%;
+        left: 122%;
+        transform: translate(-50%, -50%) rotateZ(40deg);
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(7) span {
+        top: 16%;
+        left: 48%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(7)::before {
+        top: 58%;
+        left: 75%;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:nth-child(7)::after {
+        content: unset;
+    }
+
+    .frame-card-body .body-graph .line-1 .point:hover span {
+        display: block;
+    }
+
+    .frame-card-body .body-graph .line-2 .point {
+        width: calc(100% / 7);
+        text-align: center;
+        height: 100%;
+        position: relative;
+    }
+
+    .frame-card-body .body-graph .line-2 .point::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 7px;
+        height: 7px;
+        background: #7ba2ff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .frame-card-body .body-graph .line-2 .point::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 100%;
+        background: #7ba2ff;
+        cursor: pointer;
+    }
+
+    .frame-card-body .body-graph .line-2 .point span {
+        background: #7ba2ff;
+        font-size: 10px;
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        position: absolute;
+        z-index: 0;
+        transition: display 1s linear;
+        display: none;
+    }
+
+    .frame-card-body .body-graph .line-2 .point span::before {
+        content: "";
+        position: absolute;
+        top: 82%;
+        left: 47%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 50%;
+        height: 50%;
+        z-index: -1;
+        background: #7ba2ff;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(1) span {
+        top: 18%;
+        left: 14%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(1)::before {
+        top: 60%;
+        left: 40%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(1)::after {
+        top: 48%;
+        left: 93%;
+        height: 77%;
+        transform: translate(-50%, -50%) rotateZ(69deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(2) span {
+        top: -8%;
+        left: 30%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(2)::before {
+        top: 35%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(2)::after {
+        top: 44%;
+        left: 99%;
+        height: 68%;
+        transform: translate(-50%, -50%) rotateZ(108deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(3) span {
+        top: 12%;
+        left: 31%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(3)::before {
+        top: 55%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(3)::after {
+        top: 45%;
+        left: 99%;
+        height: 68%;
+        transform: translate(-50%, -50%) rotateZ(71deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(4) span {
+        top: -6%;
+        left: 29%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(4)::before {
+        top: 35%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(4)::after {
+        top: 42%;
+        left: 95%;
+        height: 62%;
+        transform: translate(-50%, -50%) rotateZ(285deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(5) span {
+        top: 10%;
+        left: 25%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(5)::before {
+        top: 50%;
+        left: 45%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(5)::after {
+        top: 65%;
+        left: 107%;
+        height: 85%;
+        transform: translate(-50%, -50%) rotateZ(110deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(6) span {
+        top: 40%;
+        left: 50%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(6)::before {
+        top: 80%;
+        left: 70%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(6)::after {
+        top: 69%;
+        left: 120%;
+        height: 70%;
+        transform: translate(-50%, -50%) rotateZ(72deg);
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(7) span {
+        top: 18%;
+        left: 55%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(7)::before {
+        top: 58%;
+        left: 75%;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:nth-child(7)::after {
+        content: unset;
+    }
+
+    .frame-card-body .body-graph .line-2 .point:hover span {
+        display: block;
+    }
+
+    .frame-card-body .body-bottom {
+        height: 15%;
+        width: 100%;
+    }
+
+    .frame-card-body .body-bottom div {
+        width: calc(100% / 7);
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+
+    #panels p {
+        font-family: 'Open Sans', sans-serif;
+        padding: 15px;
+        color: #ffffff;
+        line-height: 18px;
+        font-size: 15px;
+        margin: 0
+    }
+
+    #one {}
+
+    #two {
+        display: none
+    }
+
+    #three {
+        display: none
+    }
+
+    .main-contend-section .form-section input[type="text"]:focus,
+    .main-contend-section .form-section input[type="password"]:focus {
+        border-color: #1877f2;
+        box-shadow: 0 0 0 2px #e7f3ff;
+        outline: none;
+
+    }
+
+    .main-contend-section .form-section input[type="submit"] {
+        background-color: #1877f2;
+        padding: 11px 0 12px 0;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #1877f2;
+        border-radius: 6px;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .main-contend-section .form-section input[type="submit"]:hover {
+        background-color: #166fe5;
+    }
+
+    .main-contend-section .form-section input[type="submit"]:focus {
+        box-shadow: 0 0 1px 2px rgba(88, 144, 255, 0.75), 0 1px 1px rgba(0, 0, 0, 0.15);
+        outline: none;
+    }
+
+    .main-contend-section .form-section a.forgot {
+        text-align: center;
+        color: #1877f2;
+        font-size: 14px;
+        display: block;
+        font-family: arial;
+        text-decoration: none;
+        margin-top: 16px;
+    }
+
+    .main-contend-section .form-section a.forgot:hover {
+        text-decoration: underline;
+    }
+
+    .main-contend-section .form-section .line {
+        border-top: 1px solid #dadde1;
+        margin-top: 22px;
+    }
+
+    .main-contend-section .form-section a.create-new-acc {
+        background-color: #42b72a;
+        padding: 13px 6px 15px 6px;
+        width: 54%;
+        box-sizing: border-box;
+        border-radius: 6px;
+        font-size: 17px;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: arial;
+        display: inline-block;
+        border: none;
+        text-decoration: none;
+        text-align: center;
+        margin: 26px 0 24px 83px;
+    }
+
+    .main-contend-section .form-section a.create-new-acc:hover {
+        background-color: #36a420;
+    }
+
+    .main-contend-section .form-section a.create-new-acc:focus {
+        box-shadow: 0 0 1px 2px rgba(88, 144, 255, 0.75), 0 1px 1px rgba(0, 0, 0, 0.15);
+        outline: none;
+    }
+
+    .main-contend-section .create-page p {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 28px;
+        margin-left: 38px;
+        font-family: arial;
+        color: #1c1e21;
+    }
+
+    .main-contend-section .create-page p>a {
+        text-decoration: none;
+        color: #1c1e21;
+        font-weight: bold;
+    }
+
+    .main-contend-section .create-page p>a:hover {
+        text-decoration: underline;
+    }
+
+    /*
+=================================
+main-contend-section end !
+=================================
+*/
+
+    /*
+=================================
+footer-section start !
+=================================
+*/
+
+
+    /*
+=================================
+Responsive part start !
+=================================
+*/
+    body {
+        margin: 0;
+    }
+
+    /*THIS IS FOR 4K MONITOR*/
+    @media only screen and (min-width: 2560px) {
+        .main-contend-section .form-section {
+            margin-left: 325px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 45.1px;
+        }
+
+        .main-contend-section .logo img {
+            width: 450px;
+            margin-top: 46px;
+            margin-left: 8px;
+        }
+
+        .main-contend-section .form-section {
+            margin-left: 200px;
+            width: 631px;
+            padding: 20px 20px 0;
+        }
+
+        .main-contend-section .form-section input[type="text"] {
+            padding: 22px 0 23px 22px;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .main-contend-section .form-section input[type="password"] {
+            padding: 22px 0 23px 22px;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .main-contend-section .form-section input[type="submit"] {
+            padding: 18px 0 19px 0;
+            font-size: 30px;
+        }
+
+        .main-contend-section .form-section a.forgot {
+            font-size: 22px;
+            margin-top: 22px;
+        }
+
+        .main-contend-section .form-section a.create-new-acc {
+            padding: 18px 17px 19px 21px;
+            width: 61%;
+            margin: 31px 0 35px 125px;
+            font-size: 30px;
+        }
+
+        .footer-section .language-section {
+            font-size: 18px;
+        }
+
+        .footer-section .other-pages-link {
+            font-size: 18px;
+        }
+
+        .footer-section .copywrite {
+            font-size: 18px;
+        }
+    }
+
+    /*THIS IS FOR DESTOP 1440px MONITOR*/
+    @media only screen and (max-width: 1440px) {
+        .main-contend-section .form-section {
+            margin-left: 105px;
+            margin-bottom: 3px;
+
+        }
+    }
+
+    @media only screen and (min-width: 1024px) and (max-width: 1230px) {
+        .main-contend-section .form-section {
+            width: 361px;
+            margin-left: 40px;
+            margin-top: 2px;
+        }
+    }
+
+    /*THIS IS FOR 1024 px MONITOR*/
+    @media only screen and (max-width: 1024px) {
+        .main-contend-section .logo img {
+            width: 250px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+        }
+
+        .main-contend-section .form-section {
+            width: 325px;
+            margin-left: 60px;
+        }
+
+        .main-contend-section .form-section input[type="text"] {
+            padding: 13px 0 12px 12px;
+        }
+
+        .main-contend-section .form-section input[type="password"] {
+            padding: 13px 0 12px 12px;
+        }
+
+        .main-contend-section .form-section input[type="submit"] {
+            padding: 7px 0 8px 0;
+        }
+
+        .main-contend-section .form-section .line {
+            margin-top: 14px;
+        }
+
+        .main-contend-section .form-section a.create-new-acc {
+            width: 65%;
+            margin: 13px 0 16px 60px;
+            padding: 11px 6px 11px 6px;
+        }
+    }
+
+    @media only screen and (max-width: 965px) and (min-width: 769px) {
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+            margin-left: 44px;
+        }
+
+        font {
+            font-size: 2.3rem;
+            margin-top: 4px;
+        }
+
+        .main-contend-section .logo img {
+            width: 220px;
+        }
+
+        .main-contend-section .form-section {
+            width: 298px;
+            margin-left: 10px;
+        }
+
+
+
+        .main-contend-section .form-section a.create-new-acc {
+            width: 67%;
+            margin: 11px 0 13px 53px;
+            padding: 11px 6px 11px 6px;
+        }
+
+        .main-contend-section .create-page p {
+            font-size: 12px;
+            margin-top: 19px;
+            margin-left: 3px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 780px) {
+        .fb-tag-line:first-child {
+            float: none;
+            width: 370px;
+        }
+
+        font {
+            text-align: center;
+            margin: auto;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+            margin-left: 44px;
+        }
+
+    }
+
+    /*THIS IS FOR TABLETS DISPLAY*/
+    @media only screen and (max-width: 768px) {
+        .main-contend-section .w-50 {
+            float: none;
+            width: 100% !important;
+        }
+
+        .fb-tag-line:last-child {
+            margin-left: 8%;
+        }
+
+        .fb-tag-line:first-child {
+
+            margin-left: 19%;
+        }
+
+        font {
+            text-align: center;
+        }
+
+        .main-contend-section {
+            padding: 0 0 90px 0;
+        }
+
+
+        .main-contend-section .logo img {
+            width: 300px;
+            margin-left: 157px;
+            margin-top: 12px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+            margin-left: 44px;
+        }
+
+        .fb-tag-line {
+            margin: 0 0 30px 8px;
+        }
+
+        .main-contend-section .form-section {
+            width: 395px;
+            margin-left: 110px;
+        }
+
+        .main-contend-section .form-section input[type="text"] {
+            padding: 15px 0 17px 16px;
+        }
+
+        .main-contend-section .form-section input[type="password"] {
+            padding: 15px 0 17px 16px;
+        }
+
+        .main-contend-section .form-section input[type="submit"] {
+            padding: 11px 0 12px 8px;
+        }
+
+        .main-contend-section .form-section .line {
+            margin-top: 16px;
+        }
+
+        .main-contend-section .form-section a.create-new-acc {
+            margin: 20px 0 18px 62px;
+            padding: 14px 6px 14px 6px;
+        }
+
+        .main-contend-section .create-page p {
+            margin-left: 0;
+        }
+
+        .footer-section .footer-container {
+            width: 94%;
+        }
+
+        .footer-section .other-pages-link .line {
+            width: 620px;
+        }
+
+        .footer-section .other-pages-link li {
+            margin-right: 8px;
+        }
+    }
+
+    @media only screen and (max-width: 680px) {
+        .main-contend-section .logo img {
+            width: 260px;
+        }
+
+        .fb-tag-line:last-child {
+            margin-left: 5px
+        }
+
+        .fb-tag-line:first-child {
+
+            margin-left: 5px
+        }
+
+        .fb-tag-line {
+            margin: 0 0 30px 0px;
+        }
+
+        .main-contend-section .form-section {
+            width: 395px;
+            margin-left: 80px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+            margin-left: 44px;
+        }
+    }
+
+    @media only screen and (max-width: 620px) {
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18.1px;
+            margin-left: 44px;
+        }
+
+        .main-contend-section .logo img {
+            width: 280px;
+            margin-left: 125px;
+        }
+
+        .main-contend-section .form-section {
+            width: 380px;
+            margin-left: 60px;
+        }
+    }
+
+    @media only screen and (max-width: 530px) {
+        .main-contend-section .logo img {
+            width: 260px;
+            margin-left: 92px;
+        }
+
+        .fb-tag-line {
+            margin: 0 0 30px -6px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 21px;
+        }
+
+        .main-contend-section .form-section {
+            width: 350px;
+            margin-left: 33px;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .main-contend-section .form-section {
+            width: 370px;
+            margin-left: 16px;
+        }
+
+        .main-contend-section .fb-tag-line {
+            width: 370px;
+        }
+
+        .main-contend-section .logo img {
+            width: 250px;
+            margin-left: 75px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 20px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            margin-left: 25px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .main-contend-section .logo img {
+            width: 250px;
+            margin-left: 87px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 20px;
+        }
+
+        .fb-tag-line {
+            margin: 0 0 25px -8px;
+        }
+
+        .main-contend-section .form-section {
+            width: 340px;
+            margin-left: 30px;
+        }
+
+        .main-contend-section .fb-tag-line {
+            width: 340px;
+        }
+    }
+
+    /*THIS IS FOR MOBAILES DISPLAY*/
+    @media only screen and (max-width: 425px) {
+        .main-contend-section {
+            padding: 0 0 40px 0;
+        }
+
+        .main-contend-section .logo img {
+            width: 210px;
+            margin-left: 70px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 18px;
+        }
+
+        .main-contend-section .fb-tag-line {
+            width: 320px;
+        }
+
+        .fb-tag-line {
+            margin: 5px 0 30px 0;
+        }
+
+        .main-contend-section .form-section {
+            width: 320px;
+            margin-left: 10px;
+        }
+
+        .main-contend-section .form-section input[type="text"] {
+            padding: 11px 0 13px 12px;
+            font-size: 14px;
+        }
+
+        .main-contend-section .form-section input[type="password"] {
+            padding: 11px 0 13px 12px;
+            font-size: 14px;
+        }
+
+        .main-contend-section .form-section input[type="submit"] {
+            padding: 7px 0 8px 4px;
+            font-size: 19px;
+        }
+
+        .main-contend-section .form-section a.forgot {
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        .main-contend-section .form-section .line {
+            margin-top: 12px;
+        }
+
+        .main-contend-section .form-section a.create-new-acc {
+            font-size: 15px;
+            margin: 15px 0 13px 56px;
+            padding: 12px 6px 12px 6px;
+        }
+    }
+
+    @media only screen and (max-width: 375px) {
+        .main-container {
+            width: 91%;
+        }
+
+        .footer-section .language-section {
+            margin-left: 22px;
+        }
+
+        .footer-section .other-pages-link {
+            margin-left: 22px;
+        }
+
+        .footer-section .other-pages-link .line {
+            width: 300px;
+        }
+
+        .footer-section .copywrite {
+            margin-left: 22px;
+        }
+    }
+
+    @media only screen and (max-width: 320px) {
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 17px;
+        }
+
+        .main-contend-section .fb-tag-line {
+            width: 303px
+        }
+
+        .main-contend-section .form-section {
+            width: 303px;
+        }
+    }
+
+    @media only screen and (max-width: 320px) {
+        .main-contend-section {
+            padding: 0 0 25px 0;
+        }
+
+        .footer-section .footer-container {
+            padding: 18px 0 0 0;
+        }
+
+        .main-container {
+            width: 90%;
+        }
+
+        .main-contend-section .logo img {
+            width: 200px;
+            margin-left: 50px;
+        }
+
+        .fb-tag-line {
+            margin: 5px 0 30px -13px;
+        }
+
+        .main-contend-section .fb-tag-line h3 {
+            font-size: 16px;
+        }
+
+        .main-contend-section .form-section {
+            width: 278px;
+            margin-left: 5px;
+        }
+
+        .footer-section .language-section {
+            margin-left: 20px;
+        }
+
+        .footer-section .other-pages-link {
+            margin-left: 20px;
+        }
+
+        .footer-section .other-pages-link .line {
+            width: 260px;
+        }
+
+        .footer-section .copywrite {
+            margin-left: 20px;
+        }
+    }
+
+    .detail .title {
+        font-weight: bold;
+        font-size: 16px;
+        color: #333333;
+        margin-bottom: 5px;
+    }
+
+    .detail .intro {
+        font-size: 15px;
+        color: #888888;
+        line-height: 1rem;
+    }
+
+    .text {
+        margin-bottom: 10px !important;
+        display: flex;
+    }
+
+    .text .icon {
+        margin-right: 8px
+    }
+
+    /* style.css */
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+    }
+
+    :root {
+        --dark-grey: #333333;
+        --medium-grey: #636363;
+        --light-grey: #eeeeee;
+        --ash: #f4f4f4;
+        --primary-color: #2b72fb;
+        --white: white;
+        --border: 1px solid var(--light-grey);
+        --shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+            rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+
+    body {
+        font-family: inherit;
+        background-color: var(--white);
+        color: var(--dark-grey);
+        letter-spacing: -0.4px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: inherit;
+    }
+
+    .btn-contact {
+        display: block;
+        background-color: var(--primary-color);
+        color: var(--white);
+        text-align: center;
+        padding: 0.6rem 1.4rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 5px;
+    }
+
+    .icon {
+        padding: 0.5rem;
+        background-color: var(--light-grey);
+        border-radius: 10px;
+    }
+
+    .logo {
+        margin-right: 1.5rem;
+    }
+
+    #nav-menu {
+        border-bottom: var(--border);
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 2rem;
+        height: 90px;
+        padding: 1.2rem 3rem;
+    }
+
+    .menu {
+        position: relative;
+        background: var(--white);
+    }
+
+    .menu-bar li:first-child .dropdown {
+        flex-direction: initial;
+        min-width: 480px;
+    }
+
+    .menu-bar li:first-child ul:nth-child(1) {
+        border-right: var(--border);
+    }
+
+    .menu-bar li:nth-child(n + 2) ul:nth-child(1) {
+        border-bottom: var(--border);
+    }
+
+    .menu-bar .dropdown-link-title {
+        font-weight: 600;
+    }
+
+    .menu-bar .nav-link {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        padding: 0.3rem;
+        min-width: 60px;
+        margin: 0 0.6rem;
+    }
+
+    .menu-bar .nav-link:hover,
+    .dropdown-link:hover {
+        color: var(--primary-color);
+    }
+
+    .nav-start,
+    .nav-end,
+    .menu-bar,
+    .right-container,
+    .right-container .search {
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown {
+        display: none;
+        flex-direction: column;
+        min-width: 230px;
+        background-color: var(--white);
+        border-radius: 10px;
+        position: absolute;
+        top: 36px;
+        z-index: 1;
+        opacity: 0;
+        transform: scale(0.97) translateX(-5px);
+        transition: 0.1s ease-in-out;
+        box-shadow: var(--shadow);
+    }
+
+    .dropdown.active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1) translateX(5px);
+    }
+
+    .dropdown ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .dropdown-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.15rem;
+    }
+
+    .dropdown-link {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        border-radius: 7px;
+        transition: 0.1s ease-in-out;
+    }
+
+    .dropdown-link p {
+        font-size: 0.8rem;
+        color: var(--medium-grey);
+    }
+
+    .right-container {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+
+    .right-container .search {
+        position: relative;
+    }
+
+    .right-container img {
+        border-radius: 50%;
+    }
+
+    .search input {
+        background-color: var(--ash);
+        border: none;
+        border-radius: 6px;
+        padding: 0.7rem;
+        padding-left: 2.4rem;
+        font-size: 16px;
+        width: 100%;
+        border: var(--border);
+    }
+
+    .search .bx-search {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        font-size: 1.3rem;
+        transform: translateY(-50%);
+        opacity: 0.6;
+    }
+
+    #hamburger {
+        display: none;
+        padding: 0.1rem;
+        margin-left: 1rem;
+        font-size: 1.9rem;
+    }
+
+    @media (max-width: 1100px) {
+        #hamburger {
+            display: block;
+        }
+
+        .container {
+            padding: 1.2rem;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 87px;
+            left: 0;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        .menu-bar li:first-child ul:nth-child(1) {
+            border-right: none;
+            border-bottom: var(--border);
+        }
+
+        .dropdown {
+            display: none;
+            min-width: 100%;
+            border: none !important;
+            border-radius: 5px;
+            position: static;
+            top: 0;
+            left: 0;
+            visibility: visible;
+            opacity: 1;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .menu.show,
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown ul {
+            padding-left: 0.3rem;
+        }
+
+        .menu-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            row-gap: 1rem;
+            padding: 1rem;
+        }
+
+        .menu-bar .nav-link {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .menu-bar li:first-child .dropdown {
+            min-width: 100%;
+        }
+
+        .menu-bar>li:not(:last-child) {
+            padding-bottom: 0.5rem;
+            border-bottom: var(--border);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .right-container {
+            display: none;
+        }
+    }
+
+    #for {
+        display: none
+    }
+
+    #five {
+        display: none
+    }
+
+    #six {
+        display: none
+    }
+</style>
+
+<header id="nav-menu" aria-label="navigation bar">
+    <div class="container">
+        <div class="nav-start">
+            <a class="logo" href="/">
+                <img src="{% static 'images/ilikeit.png' %}" width="75" height="75" alt="Inc Logo" />
+            </a>
+            <nav class="menu">
+                <ul class="menu-bar" style="margin-bottom: 0px;">
+                    <li>
+                        <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true"
+                            aria-expanded="false" aria-label="browse">
+                            Browse
+                            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown1" class="dropdown">
+                            <ul role="menu">
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#best-of-the-day">
+                                        <img src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/botd.svg"
+                                            class="icon" />
+                                        <div>
+                                            <span class="dropdown-link-title">Best of the day</span>
+                                            <p>Shorts featured today by curators</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#featured-streams">
+                                        <img src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/fs.svg"
+                                            class="icon" />
+                                        <div>
+                                            <span class="dropdown-link-title">Featured Streams</span>
+                                            <p>Leading creatives livestreams</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#subscriptions">
+                                        <img src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/sp.svg"
+                                            class="icon" />
+                                        <div>
+                                            <span class="dropdown-link-title">Subscriptions</span>
+                                            <p>Gain exclusive access</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#creative-feed">
+                                        <img src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/cf.svg"
+                                            class="icon" />
+                                        <div>
+                                            <span class="dropdown-link-title">Creative Feed</span>
+                                            <p>See trending creations</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <ul role="menu">
+                                <li class="dropdown-title">
+                                    <span class="dropdown-link-title">Browse by apps</span>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#adobe-xd">
+                                        <img
+                                            src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/xd.svg" />
+                                        Adobe XD
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#after-effect">
+                                        <img
+                                            src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/ae.svg" />
+                                        After Effect
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#sketch">
+                                        <img
+                                            src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/sketch.svg" />
+                                        Sketch
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#indesign">
+                                        <img
+                                            src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/indesign.svg" />
+                                        Indesign
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#figma">
+                                        <img
+                                            src="https://raw.githubusercontent.com/Evavic44/responsive-navbar-with-dropdown/main/assets/icons/figma.svg" />
+                                        Figma
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                            aria-expanded="false" aria-label="discover">
+                            Discover
+                            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown2" class="dropdown">
+                            <ul role="menu">
+                                <li>
+                                    <span class="dropdown-link-title">Browse Categories</span>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#branding">Branding</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#illustrations">Illustration</a>
+                                </li>
+                            </ul>
+                            <ul role="menu">
+                                <li>
+                                    <span class="dropdown-link-title">Download App</span>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#mac-windows">MacOS & Windows</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-link" href="#linux">Linux</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="/">Community </a></li>
+                    <li><a class="nav-link" href="/">Our job</a></li>
+                    <li><a class="nav-link" href="/">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="nav-end">
+            <div class="right-container">
+
+
+                  <a href="/signup" style="       display: block;
+        text-align: center;
+        padding: 0.6rem 1.4rem;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none ;
+        border-radius: 5px;"class=" btn-info">Signup  </a>
+                 <a href="/login" style="       display: block;
+        text-align: center;
+        padding: 0.6rem 1.4rem;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none ;
+        border-radius: 5px;"class=" btn-primary">Login </a>
+
+            </div>
+
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="bx bx-menu" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</header>
+<div id="intro" class="main-contend-section">
+    <div class="main-container">
+
+        <div class='w-50'>
+
+            <h2 style="margin-left:51px;margin-top:51px; display:block">What is depression?</h2>
+
+            <ul class="tabs group">
+                <li><a class="active" href="#/one">PART 1</a></li>
+                <li><a href="#/two">PART 2</a></li>
+                <li><a href="#/three">PART 3</a></li>
+                <li><a href="#/for">PART 4</a></li>
+                <li><a href="#/five">PART 5</a></li>
+                <li><a href="#/six">PART 6</a></li>
+            </ul>
+            <div id="panels" style="overflow:hidden">
+                <p id="one">Depression is one of the most common types of mental health conditions and often develops
+                    alongside anxiety.
+
+                    Depression can be mild and short-lived or severe and long-lasting. Some people are affected by
+                    depression only once,
+                    while others may experience it multiple times.
+
+                    Depression can lead to suicide, but this is preventable when appropriate support is provided. It’s
+                    important to know
+                    that much can be done to help young people who are thinking about suicide.</p>
+                <p id="two">What causes depression? <br>
+                    Depression can happen as a reaction to something like abuse, violence in school, the death of
+                    someone close or family
+                    problems like domestic violence or family breakdown. Someone might get depressed after being
+                    stressed for a long time.
+                    It can also run in the family. Sometimes we may not know why it happens.</p>
+                <p id="three"> Depression in children and adolescents <br>
+                    Depression can show up in children and adolescents as prolonged periods of unhappiness or
+                    irritability. It is quite
+                    common among older children and teenagers, but often goes unrecognized.
+
+                    Some children might say they feel “unhappy” or “sad”. Others might say they want to hurt or even
+                    kill themselves.
+                    Children and adolescents who experience depression are at greater risk of self-harm, so such
+                    responses should always be
+                    taken seriously.
+
+                    Just because a child seems sad, it doesn't necessarily mean they have depression. But if the sadness
+                    becomes persistent
+                    or interferes with normal social activities, interests, schoolwork or family life, it may mean they
+                    need support from a
+                    mental health professional.
+
+                    Remember, only a doctor or a mental health professional can diagnose depression, so don’t hesitate
+                    to ask your
+                    health-care provider for advice if you are worried about your child.
+                </p>
+                <p id="for"> Signs and symptoms of depression in kids <br>
+                    Depression can feel different for different children. Here are some of the common signs and symptoms
+                    of depression:
+                    <br>
+                    Physical: <br>
+                    1. Tiredness or low energy, even when rested<br>
+                    2. Restlessness or difficulty concentrating<br>
+                    3. Difficulty in carrying out daily activities<br>
+                    Emotional and mental:<br>
+                    1. Persistent sadness, anxiousness or irritability<br>
+                    2. Loss of interest in friends and activities that they normally enjoy<br>
+                    3. Withdrawal from others and loneliness<br>
+                    Experiencing one or more of these symptoms doesn’t mean a child is affected by depression, but there
+                    are a number of
+                    ways you can help your child cope. If you are worried about your child, do not hesitate to ask your
+                    health-care provider
+                    for advice.
+
+                </p>
+                <p id="five"> Ways to help your child cope <br>
+                    Here are some things you can do to support your child if you think they may be depressed:
+                    1. Find out what’s happening <br>
+                    2. Spend time with them <br>
+                    3. Encourage positive habits <br>
+                    4. Let them express themselves <br>
+                    5. Protect them from stressful surroundings <br>
+                    <br>
+                </p>
+                <p id="six"> When to seek professional help <br>
+                    As depression can only be diagnosed by a qualified expert, it's important to seek help from your
+                    health care provider
+                    who may refer your child to a mental health expert or psychiatrist. If the mental health expert
+                    thinks your child would
+                    benefit from treatment, the options might include some form of talk therapy – where they learn how
+                    to manage their
+                    thoughts and feelings, or a combination of therapy and medication.<br>
+                    <br>
+                    If your child has thoughts of self-harm, or has already self-harmed, seek help from emergency
+                    services or a health-care
+                    professional. Don’t delay getting in touch if you’re worried.<br>
+                    <br>
+                    Depression can be treated and the sooner you speak to an expert, the sooner your child can feel
+                    better.
+                </p>
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="w-50">
+            <div class="modal-content" style="float:right; width: 80%;margin-right: 30px;">
+                <div class="modal-header" style="padding: 0px; margin:1em;background:black">
+                    <video id="video" width="540" height="400" autoplay="true" class="img-thumbnail"></video>
+                    <div class="clock-canvas" style="position: absolute; top: 0px; left: 0px;">
+                        <div class="kineticjs-content" role="presentation"
+                            style="display: inline-block; width: 200px; height: 200px;">
+                            <canvas width="200" height="200"
+                                style="padding: 0px; margin: 0px; border: 0px; background: transparent; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"></canvas>
+                        </div>
+                        <div class="text">
+                            <p id="counter" style="    display: block;
+    padding-left: 90px;
+    padding-top: 10px;
+" class="val">3</p>
+                            <p class="type-seconds type-time"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <button type="submit" id="capture" class="btn btn-primary">Check emotion</button>
+                    <button id="hide" class="btn btn-danger">Hide video</button>
+
+                    <a>
+                        <button name="username" type="button" id="go" class="btn btn-success"
+                            style="visibility: hidden"></button>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <div class="progress" style="
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                height: 1.5rem;
+                overflow: hidden;
+                font-size: 1.125rem;
+                background-color: #e9ecef;
+                border-radius: 0.25rem;
+                width: 100%
+            ">
+                        <div id="percentage" style="animation: progress-bar-stripes 1s linear infinite;    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+                background-size: 1rem 1rem;
+                    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+                background-size: 1rem 1rem" class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="canvas" width="320" height="240" style="visibility: hidden"></canvas>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const chart = document.getElementById('myChart');
+
+        new Chart(chart, {
+            type: 'pie',
+            data: {
+                labels: ['World', 'African Region', 'Europian Region', 'American Region',
+                    'Eastern Mediterrian Region', 'Western Pacific Region', 'South East Asia Region'],
+                datasets: [{
+                    label: 'According to data from 2017 WHO, rates of depressive episodes were highest in adults who reported two or more races.',
+                    data: [4.21, 19, 11.49, 14.37, 15.33, 20.11, 25.96],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 205, 86)'
+                    ],
+                }]
+            },
+        });
+    </script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'></script>
+    <script>
+        (function ($) { var tabs = $(".tabs li a"); tabs.click(function () { var panels = this.hash.replace('/', ''); tabs.removeClass("active"); $(this).addClass("active"); $("#panels").find('p').hide(); $(panels).fadeIn(200); }); })(jQuery); 
+    </script>
+    <script>
+        const dropdownBtn = document.querySelectorAll(".dropdown-btn");
+        const dropdown = document.querySelectorAll(".dropdown");
+        const hamburgerBtn = document.getElementById("hamburger");
+        const navMenu = document.querySelector(".menu");
+        const links = document.querySelectorAll(".dropdown a");
+
+        function setAriaExpandedFalse() {
+            dropdownBtn.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
+        }
+
+        function closeDropdownMenu() {
+            dropdown.forEach((drop) => {
+                drop.classList.remove("active");
+                drop.addEventListener("click", (e) => e.stopPropagation());
+            });
+        }
+
+        function toggleHamburger() {
+            navMenu.classList.toggle("show");
+        }
+
+        dropdownBtn.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+                const dropdownIndex = e.currentTarget.dataset.dropdown;
+                const dropdownElement = document.getElementById(dropdownIndex);
+
+                dropdownElement.classList.toggle("active");
+                dropdown.forEach((drop) => {
+                    if (drop.id !== btn.dataset["dropdown"]) {
+                        drop.classList.remove("active");
+                    }
+                });
+                e.stopPropagation();
+                btn.setAttribute(
+                    "aria-expanded",
+                    btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
+                );
+            });
+        });
+
+        // close dropdown menu when the dropdown links are clicked
+        links.forEach((link) =>
+            link.addEventListener("click", () => {
+                closeDropdownMenu();
+                setAriaExpandedFalse();
+                toggleHamburger();
+            })
+        );
+
+        // close dropdown menu when you click on the document body
+        document.documentElement.addEventListener("click", () => {
+            closeDropdownMenu();
+            setAriaExpandedFalse();
+        });
+
+        // close dropdown when the escape key is pressed
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeDropdownMenu();
+                setAriaExpandedFalse();
+            }
+        });
+
+        // toggle hamburger menu
+        hamburgerBtn.addEventListener("click", toggleHamburger);
+
+        /**
+         * Created by hussein on 5/15/17.
+         */
+        // Grab elements, create settings, etc.
+        counter = 3;
+        var photos = [];
+        var nbPhoto = 3;
+        var hideVideo = false
+        // Get access to the camera!
+
+        const video = document.querySelector('#video')
+        const hideBtn = document.querySelector("#hide")
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    video.srcObject = stream
+                })
+        }
+        // Elements for taking the snapshot
+
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        function takePhotos(context, canvas) {
+            context.drawImage(video, 0, 0, 320, 240);
+            photos[nbPhoto - counter] = canvas.toDataURL("image/png");
+        }
+        const canvas_2 = new OffscreenCanvas(1, 1);    // needs an initial size
+        const ctx = canvas_2.getContext("2d");
+        //...
+        canvas_2.height = video.videoHeight;
+        canvas_2.width = video.videoWidth;
+        // Trigger photo take
+        $('#hide').click(function () {
+            var hideVideo = true
+            video.style.visibility = "hidden"
+        })
+        $('#capture').click(function () {
+            if (counter == 0)
+                return;
+            context.drawImage(video, 0, 0, 320, 240);
+            takePhotos(context, canvas);
+            counter--;
+            document.getElementById("counter").innerHTML = counter;
+            if (counter == 0) {
+                $.ajax({
+                    headers: { "X-CSRFToken": getCookie('csrftoken') },
+                    type: "POST",
+                    url: "/sendlogin/",
+                    data: {
+                        photos: photos
+                    },
+                    success: function (data) {
+                        $('#go').prop('disabled', true);
+                        counter = 3;
+                        document.getElementById("counter").innerHTML = counter;
+                        if (data.id === null) {
+                            $('#go').hide();
+                            $('#percentage').css('width', '0%').attr('aria-valuenow', 0).html('');
+                            return;
+                        }
+                        document.getElementById("counter").innerHTML = counter;
+                        $('#go').html(data.name);
+                        $('#go').removeAttr('style');
+                        if (data.name == 'Unknown') {
+                            $('#percentage').css('width', '0%').attr('aria-valuenow', 0).html('');
+                            return;
+                        }
+                        $('#go').prop('disabled', false);
+                        $('#go').parent().attr('href', '/profile/' + data.id);
+                        var percent = String(data.percentage);
+                        $('#percentage').css('width', percent + '%').attr('aria-valuenow', percent).html(percent + ' %');
+                        setTimeout(
+                            function () {
+                                alert("You are allowed to login the system")
+                                window.location.replace("http://127.0.0.1:8000/start-exam ");
+                            }, 2000);
+                    }
+                });
+            }
+        });
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>

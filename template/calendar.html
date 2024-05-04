@@ -1,0 +1,171 @@
+{% extends 'doctor/doctorbase.html' %}
+{% block content %}
+<style>
+	a {
+		color:white;
+
+	}<style>/* Common styles */
+body {
+  font-family: "ptsans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btncal {
+  outline: none;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+  margin-right: 3px;
+}
+
+.clearfix {
+  margin: 15px;
+}
+
+.form {
+  margin: auto;
+}
+
+.form input, .form select, .form textarea {
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  outline: none;
+  background: none;
+  padding: 5px;
+  width: 100%;
+}
+
+/* App styles */
+.title {
+  text-align: center;
+  margin: 10px;
+}
+
+.calendar {
+  width: 98%;
+  margin: auto;
+  font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 200px;
+  height: 150px;
+  padding: 20px 0px 0px 5px;
+}
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+ul {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+}
+
+a {
+  color: #17a2b8;
+}</style>
+</style>
+<h1 class="title">Cuộc hẹn</h1>
+
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Tháng trước  </a>
+	<a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Tháng sau</a>
+
+	<a style="margin-right:3px"class="btn btn-info right" href="{% url 'paevent_new' %}"> Lịch hẹn mới </a>
+			<a style="margin-left:3px"class="btn btn-info left" href="{% url 'unaccept-calendar' %}"> Lịch hẹn gửi đến </a>
+
+</div>
+{{ calendar }}
+
+<script>
+	var currentTime = new Date()
+	// returns the month (from 0 to 11)
+	var monthDate = currentTime.getMonth() + 1
+	var span = document.getElementsByTagName("span")
+	var spantext = span[2].innerHTML
+	let finalspan = spantext.replace("(", ""); // "Bello World"
+	let text1 = finalspan.replace(")", ""); // "Bello World"
+	let text2 = text1.replace(",", ""); // "Bello World"
+	span[2].innerHTML = text2
+	// returns the day of the month (from 1 to 31)
+	var dayDate = currentTime.getDate()
+
+	// returns the year (four digits)
+	var year = currentTime.getFullYear()
+	var month = document.getElementsByClassName("month")
+	var mon = document.getElementsByClassName("mon")
+	var tue = document.getElementsByClassName("tue")
+	var wed = document.getElementsByClassName("wed")
+	var thu = document.getElementsByClassName("thu")
+	var fri = document.getElementsByClassName("fri")
+	var sat = document.getElementsByClassName("sat")
+	var sun = document.getElementsByClassName("sun")
+	mon[0].innerHTML = "Thứ 2"
+	tue[0].innerHTML = "Thứ 3"
+	wed[0].innerHTML = "Thứ 4"
+	thu[0].innerHTML = "Thứ 5"
+	fri[0].innerHTML = "Thứ 6"
+	sat[0].innerHTML = "Thứ 7"
+	sun[0].innerHTML = "Chủ Nhật"
+
+	var text = month[0].innerText
+	if (text == `Janurary ${year}`) {
+		month[0].innerHTML = `Tháng 1 ${year}`
+	}
+	if (text == `February ${year}`) {
+		month[0].innerHTML = `Tháng 2 ${year}`
+	}
+	if (text == `March ${year}`) {
+		month[0].innerHTML = `Tháng 3 ${year}`
+	}
+	if (text == `April ${year}`) {
+		month[0].innerHTML = `Tháng 4 ${year}`
+	}
+	if (text == `May ${year}`) {
+		month[0].innerHTML = `Tháng 5 ${year}`
+	}
+	if (text == `June ${year}`) {
+		month[0].innerHTML = `Tháng 6 ${year}`
+	}
+	if (text == `July ${year}`) {
+		month[0].innerHTML = `Tháng 7 ${year}`
+	}
+	if (text == `August ${year}`) {
+		month[0].innerHTML = `Tháng 8 ${year}`
+	}
+	if (text == `September ${year}`) {
+		month[0].innerHTML = `Tháng 9 ${year}`
+	}
+	if (text == `October ${year}`) {
+		month[0].innerHTML = `Tháng 10 ${year}`
+	}
+	if (text == `November ${year}`) {
+		month[0].innerHTML = `Tháng 11 ${year}`
+	}
+	if (text == `December ${year}`) {
+		month[0].innerHTML = `Tháng 12 ${year}`
+	}
+</script>
+{% endblock %}
